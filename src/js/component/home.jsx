@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import fetchDataCallback from "./fetchDataCallback";
 
 //include images into your bundle
 
@@ -17,7 +18,6 @@ const Home = () => {
   }
   cargaInicial()
 
-////////////                      ///////////
 ////////------recibir informacion de la API--------///////////
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -25,13 +25,13 @@ const Home = () => {
   }
   
   /////---------------------------------------------------------------/////
-  
+
   const todosDeleteData = async (id) => {
     const todosNew = todos.filter((todo) => todo.id !== id);
     await udpateFetch(todosNew)
     setTodos(todosNew);
   };
-
+  
   const todosAddData = async () => {
     const todosNew = [...todos,{ label: todo, done: false, id:Date.now()+ todo}];
     await udpateFetch(todosNew)
@@ -45,9 +45,10 @@ const Home = () => {
 
 
 /////----------------------------------------------------------------------////
-  return (<div className="Porfa">
+  return (
     <div className="App">
       <h1>Todo List</h1>
+      <div className="Container">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -56,6 +57,7 @@ const Home = () => {
         />
         <button type="submit">Add Todo</button>
       </form>
+      </div>
 	  <div>
       {todos.map((todo) => (
         <div key={todo.id} className="text-center" >
@@ -67,7 +69,7 @@ const Home = () => {
       ))}
 	  </div>
     </div>
-	</div>
+	
   );
 };
 
@@ -87,17 +89,6 @@ const udpateFetch = (todos) =>
     return false;
   });
 
-function fetchDataCallback() {
-  return fetch("https://assets.breatheco.de/apis/fake/todos/user/alesanchezr")
 
-    .then((response) => {
-     return response.json().then((response) => {console.log(response); return response} );
-
-    })
-    .catch((error) => {
-      //error handling
-      console.log(error);
-    });
-};
 ////////////////////////////////----------
 export default Home ;

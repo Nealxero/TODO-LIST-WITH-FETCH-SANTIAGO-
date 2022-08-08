@@ -3,6 +3,7 @@
     position: relative;
     padding: 50px;
     margin: auto;
+    width: 50%;
   }
   
   .App,
@@ -35,7 +36,9 @@
     z-index: -2;
   }
   .Porfa {
-    margin:auto
+    margin:auto;
+    width: 50%;
+    
   }
   h1 {
   font-family: fantasy;}
@@ -43,7 +46,14 @@
       font-family: 'Courier New', Courier, monospace;
       font-weight: bold;
   }
-  
+  input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    position:initial;
+  }
   .Caja {
       justify-content: center; 
   }
